@@ -3,7 +3,7 @@
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 
-class ExampleTest extends TestCase
+class AppTest extends TestCase
 {
     /**
      * A basic test example.
@@ -13,9 +13,10 @@ class ExampleTest extends TestCase
     public function testExample()
     {
         $this->get('/');
-
+        $expected = file_get_contents(__DIR__ . '/fixtures/index.txt');
         $this->assertEquals(
-            $this->app->version(), $this->response->getContent()
+            $expected,
+            $this->response->getContent()
         );
     }
 }
