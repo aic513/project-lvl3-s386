@@ -12,5 +12,9 @@
 */
 
 $router->get('/', function () use ($router) {
-    return view('index');
+    return view('home');
 });
+
+$router->post('/domains', ['as' => 'domains.save', 'uses' => 'DomainController@save']);
+$router->get('/domains/{id}', ['as' => 'domains.show', 'uses' => 'DomainController@show']);
+$router->get('/domains', ['as' => 'domains.all', 'uses' => 'DomainController@showAll']);
