@@ -14,4 +14,4 @@
 
 [![License](https://poser.pugx.org/laravel/lumen-framework/license.svg)](https://packagist.org/packages/laravel/lumen-framework)
 
-Link - https://mighty-hollows-41339.herokuapp.com/
+Link - https://analyzer-of-page.herokuapp.com/
