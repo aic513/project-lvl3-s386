@@ -1,15 +1,13 @@
 @extends('layouts.main')
 
-@section('domains', 'active')
-
 @section('content')
-    <table class='table'>
-        <thead>
+    <table class='table table-hover table-bordered'>
+        <thead class="thead-light">
         <tr>
             <th scope="col">id</th>
             <th scope="col">domain</th>
-            <th scope="col">created</th>
-            <th scope="col">updated</th>
+            <th scope="col">created_at</th>
+            <th scope="col">updated_at</th>
         </tr>
         </thead>
         <tbody>

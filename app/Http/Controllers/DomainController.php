@@ -18,7 +18,7 @@ class DomainController extends Controller
     
     public function index()
     {
-        $domains = Domains::paginate(10);
+        $domains = Domains::paginate(5);
         
         return view('domains', ["domains" => $domains, 'isSingleRow' => false]);
     }

@@ -13,7 +13,7 @@
 
 $router->get('/', [
     'as' => 'home',
-    function () use ($router) {
+    function () {
         return view('home');
     }
 ]);
