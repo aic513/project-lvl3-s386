@@ -2,11 +2,14 @@
 
 @section('content')
     <div class="jumbotron" align="center">
-        <p class="lead">Enter URL and press submit</p>
-        <hr class="my-4">
-        <form action={{ route('domains.store') }} method="post">
-            <input type="text" name="url">
-            <input class="btn btn-primary" type="submit" value="Submit">
+        <form action="{{route('domains.store')}}" method="post">
+            <div class="form-group">
+                <div class="col-5">
+                    <label for="exampleInputUrl">Enter URL and press Submit</label>
+                    <input type="url" name="url" class="form-control" id="exampleInputUrl" placeholder="Enter url">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-sm" value="Submit">Submit</button>
         </form>
         @isset($errors)
             @foreach ($errors as $error)
