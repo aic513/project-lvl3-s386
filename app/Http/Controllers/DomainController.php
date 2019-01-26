@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use \App\Domain;
+use \GuzzleHttp\Client;
 
 class DomainController extends Controller
 {
-    public function __construct()
+    private $guzzleClient;
+    
+    public function __construct(Client $client)
     {
-        //
+        $this->guzzleClient = $client;
     }
     
     public function index()
@@ -33,10 +36,23 @@ class DomainController extends Controller
         if ($validator->fails()) {
             return view('home', ['errors' => $validator->errors()->all()]);
         }
-        $url = parse_url($request['url'], PHP_URL_HOST);
-        $domain = new Domain();
-        $domain->name = $url;
-        $domain->saveOrFail();
+        
+        $url = $request['url'];
+        try {
+            $response = $this->guzzleClient->get($url);
+        } catch (\Exception $e) {
+            return view('home', ['errors' => ["Something was wrong within request to $url"]]);
+        }
+        $pageBody = $response->getBody();
+        $responseCode = $response->getStatusCode();
+        $headers = $response->getHeader('Content-Length');
+        $contentLength = empty($headers) ? null : $headers[0];
+        $domainName = parse_url($url, PHP_URL_HOST);
+        $domain = Domain::updateOrCreate(['name' => $domainName], [
+            'page_body' => $pageBody,
+            'response_code' => $responseCode,
+            'content_length' => $contentLength
+        ]);
         
         return redirect()->route('domains.show', ['id' => $domain->id]);
     }

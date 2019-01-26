@@ -28,5 +28,12 @@
     </table>
     @if(!$isSingleRow)
         {{ $domains->links('paginator.custom', ['paginator' => @domains]) }}
+    @else
+        <div class="container">
+            <ul class="list-group text-center">
+                <li class="list-group-item">Response Code <b>{{ empty($domains[0]->response_code) ? '-' :  $domains[0]->response_code }}</b></li>
+                <li class="list-group-item">Content length <b>{{ empty($domains[0]->content_length) ? '-' :  $domains[0]->content_length}}</b></li>
+            </ul>
+        </div>
     @endif
 @endsection

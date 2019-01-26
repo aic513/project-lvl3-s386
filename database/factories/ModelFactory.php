@@ -21,5 +21,9 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 $factory->define(App\Domain::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->url,
+        'content_length' => $faker->numberBetween(150, 89632),
+        'response_code' => 200,
+        'page_body' => $faker->text(),
+    
     ];
 });
