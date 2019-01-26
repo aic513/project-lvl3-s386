@@ -24,6 +24,9 @@ $factory->define(App\Domain::class, function (Faker\Generator $faker) {
         'content_length' => $faker->numberBetween(150, 89632),
         'response_code' => 200,
         'page_body' => $faker->text(),
+        'main_header' => $faker->text(),
+        'meta_keywords' => $faker->text(),
+        'meta_description' => $faker->text(),
     
     ];
 });

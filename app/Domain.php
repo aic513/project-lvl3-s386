@@ -16,5 +16,8 @@ class Domain extends Model
         'page_body',
         'response_code',
         'content_length',
+        'main_header',
+        'meta_keywords',
+        'meta_description'
     ];
 }
