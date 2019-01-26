@@ -1,16 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\DB;
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 
 class AppTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
     public function testExample()
     {
         $this->get('/');
@@ -19,8 +13,7 @@ class AppTest extends TestCase
     
     public function testDomainsPage()
     {
-        DB::insert('insert into domains (name) values (?)', ['testDomain1']);
-        DB::insert('insert into domains (name) values (?)', ['testDomain2']);
+        factory('App\Domain', 5)->create();
         $this->get('/domains');
         $this->assertResponseOk();
     }
